@@ -1,6 +1,7 @@
 const Usuario = require('./usuario')
+const bcrypt = require('bcrypt')
 
-Usuario.methods(['get', 'post', 'put', 'delete'])
+Usuario.methods(['get', 'put', 'delete'])
 Usuario.updateOptions({ new: true, runValidators: true })
 
 Usuario.route('count', (req, res, next) => {
@@ -12,5 +13,15 @@ Usuario.route('count', (req, res, next) => {
     }
   })
 })
+
+Usuario.before('put', hashPassword)
+
+function hashPassword (req, res, next) {
+  const salt = bcrypt.genSaltSync()
+  if (req.body.senha) {
+    req.body.senha = bcrypt.hashSync(req.body.senha, salt)
+  }
+  next()
+}
 
 module.exports = Usuario
