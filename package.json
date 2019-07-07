@@ -6,7 +6,8 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "nodemon",
-    "production": "pm2 start src/loader.js --name backend-jexperts"
+    "production": "pm2 start src/loader.js --name backend-jexperts",
+    "start": "pm2 start src/loader.js --name backend-jexperts"
   },
   "keywords": [],
   "author": "Willian Rodrigues <willianrssi@gmail.com> (https://github.com/willianrssi)",
